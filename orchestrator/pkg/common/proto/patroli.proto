@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package patroli.v1;
+
+option go_package = "pkg/common/configpb";
+
+message TelemetryRequest {
+  uint32 severity = 1;
+  string device_id = 2;
+  bytes payload = 3;
+}
+
+message IngestResponse {
+  int32 status_code = 1;
+  string status_label = 2;
+}
+
+service PatroliIngestor {
+  rpc PushTelemetry (TelemetryRequest) returns (IngestResponse);
+  rpc StreamTelemetry (stream TelemetryRequest) returns (IngestResponse);
+}

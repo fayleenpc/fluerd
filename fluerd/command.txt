@@ -1,0 +1,4 @@
+cargo doc --no-deps --open
+cargo run
+cargo clippy -- -W clippy::pedantic
+cargo clippy --fix --bin "fluerd" -p fluerd -- -W clippy::pedantic
